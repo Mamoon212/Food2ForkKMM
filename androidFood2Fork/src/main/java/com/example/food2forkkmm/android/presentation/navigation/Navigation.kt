@@ -31,7 +31,7 @@ fun Navigation() {
         ) { navBackStackEntry ->
             val factory = HiltViewModelFactory(LocalContext.current, navBackStackEntry)
             val viewModel: RecipeDetailViewModel = viewModel("RecipeDetailViewModel", factory)
-            RecipeDetailScreen(recipeId = viewModel.recipeId.value)
+            RecipeDetailScreen(recipe = viewModel.recipe.value)
         }
     }
 }
