@@ -10,8 +10,8 @@ android {
     compileSdkVersion(Application.compileSdk)
     defaultConfig {
         applicationId = Application.appId
-        minSdkVersion(Application.minSdk)
-        targetSdkVersion(Application.targetSdk)
+        minSdk = Application.minSdk
+        targetSdk = Application.targetSdk
         versionCode = Application.versionCode
         versionName = Application.versionName
     }

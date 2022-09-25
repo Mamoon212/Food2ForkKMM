@@ -5,6 +5,8 @@ import android.os.Bundle
 import androidx.activity.compose.setContent
 import com.example.food2forkkmm.android.presentation.navigation.Navigation
 import com.example.food2forkkmm.datasource.network.KtorClientFactory
+import com.example.food2forkkmm.datasource.network.model.RecipeDto
+import com.example.food2forkkmm.datasource.network.toRecipe
 import dagger.hilt.android.AndroidEntryPoint
 import io.ktor.client.request.*
 import kotlinx.coroutines.CoroutineScope
@@ -21,10 +23,10 @@ class MainActivity : AppCompatActivity() {
         val ktorClient = KtorClientFactory().build()
         CoroutineScope(IO).launch {
             val recipeId = 1551
-            val recipe = ktorClient.get<String> {
+            val recipe = ktorClient.get<RecipeDto> {
                 url("$BASE_URL/get?id=$recipeId")
                 header("Authorization", TOKEN)
-            }
+            }.toRecipe()
             println("Ktor: $recipe ")
         }
         setContent {
