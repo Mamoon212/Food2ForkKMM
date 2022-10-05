@@ -1,5 +1,6 @@
 package com.example.food2forkkmm.android.di
 
+import com.example.food2forkkmm.datasource.cache.RecipeCache
 import com.example.food2forkkmm.datasource.network.RecipeService
 import com.example.food2forkkmm.interactors.recipe_detail.GetRecipe
 import com.example.food2forkkmm.interactors.recipe_list.SearchRecipe
@@ -14,13 +15,13 @@ import javax.inject.Singleton
 object InteractorsModule {
     @Singleton
     @Provides
-    fun provideSearchRecipe(recipeService: RecipeService): SearchRecipe {
-        return SearchRecipe(recipeService = recipeService)
+    fun provideSearchRecipe(recipeService: RecipeService, recipeCache: RecipeCache): SearchRecipe {
+        return SearchRecipe(recipeService = recipeService, recipeCache = recipeCache)
     }
 
     @Singleton
     @Provides
-    fun provideGetRecipe(recipeService: RecipeService): GetRecipe {
-        return GetRecipe(recipeService = recipeService)
+    fun provideGetRecipe(recipeCache: RecipeCache): GetRecipe {
+        return GetRecipe(recipeCache = recipeCache)
     }
 }
